@@ -1,8 +1,6 @@
-setTimeout(() => {
-  console.log("Hello World");
-  clearInterval(int);
-}, 3000);
+const { people, ages } = require("./people");
 
-const int = setInterval(() => {
-  console.log("Hello World");
-}, 1000);
+console.log(ages, people);
+
+const os = require("os");
+console.log(os.platform());
