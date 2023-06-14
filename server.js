@@ -6,7 +6,36 @@ const server = http.createServer((req, res) => {
 
   res.setHeader("Content", "text/html");
 
-  fs.readFile("./html/index.html", (err, data) => {
+  let path = "./html/";
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      res.statusCode = 200;
+      break;
+
+    case "/home":
+      path += "index.html";
+      res.statusCode = 200;
+      break;
+
+    case "/about":
+      path += "about.html";
+      res.statusCode = 200;
+      break;
+
+    case "/aboutme":
+      res.statusCode = 301;
+      res.setHeader("Location", "./about");
+      res.end();
+      break;
+
+    default:
+      path += "404.html";
+      res.statusCode = 404;
+      break;
+  }
+
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log("Error");
     } else {
