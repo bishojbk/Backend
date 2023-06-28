@@ -2,16 +2,17 @@ const express = require("express");
 
 const app = express();
 
+app.set("view engine", "ejs");
+app.set("views", "html");
+
 app.listen(3000);
 
 app.get("/", (req, res) => {
-  //res.send("<p>HELLO F</p>");
-  res.sendFile("./html/index.html", { root: __dirname });
+  res.render("index");
 });
 
 app.get("/about", (req, res) => {
-  //res.send("<p>HELLO EJR</p>");
-  res.sendFile("./html/about.html", { root: __dirname });
+  res.render("about");
 });
 
 //redirect
@@ -21,5 +22,5 @@ app.get("/about-us", (req, res) => {
 
 //404 page // must be in bottom of the app
 app.use((req, res) => {
-  res.status(404).sendFile("./html/404.html", { root: __dirname });
+  res.render("404");
 });
